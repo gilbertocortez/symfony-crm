@@ -1,12 +1,27 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
+	</head>
+	<body>
+		<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+			<a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">CRM</a>
+			<ul class="navbar-nav px-3">
+				<li class="nav-item text-nowrap">
+					<a class="nav-link" href="#">Log In</a>
+				</li>
+			</ul>
+		</nav>
+		{% block body %}{% endblock %}
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+	</body>
 </html>
