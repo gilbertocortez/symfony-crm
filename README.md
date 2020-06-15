@@ -1,4 +1,4 @@
 Symfony CRM
 
-Bult by
+Built by
     Gilberto Cortez
