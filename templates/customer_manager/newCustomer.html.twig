@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CustomerManagerController!
+{% endblock %}
+
+{% block body %}
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+	</style>
+
+	<div class="example-wrapper">
+		<h1>Customer Management</h1>
+		<p>Please complete the following form to create the customer account</p>
+		<form action="{{ path('addCustomer') }}" method="post">
+
+			<label for="customerFullName">Customer Full Name</label>
+			<input type="text" name="customerFullName" id="customerFullName">
+			<br><br>
+
+			<label for="customerPhone">Customer Phone</label>
+			<input type="tel" name="customerPhone" id="customerPhone">
+			<br><br>
+
+			<label for="customerEmail">Customer Email</label>
+			<input type="email" name="customerEmail" id="customerEmail">
+			<br><br>
+
+			<input type="hidden" name="customerExternalId" value="">
+
+			<input type="submit" value="Add Customer">
+
+		</form>
+		<ul>
+			<li><a href="{{path('showCustomer',{customerID:'1'})}}">View Customer</a></li>
+		</ul>
+	</div>
+{% endblock %}
