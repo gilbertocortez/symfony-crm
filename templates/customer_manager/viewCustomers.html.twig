@@ -9,10 +9,12 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Customer Management</h1>
+    <h1>View Customers</h1>
     <ul>
-        <li><a href="{{ path('newCustomer') }}">Add Customer</a></li>
-        <li><a href="{{ path('viewCustomers') }}">View Customers</a></li>
+        {% for customer in customers %}
+            <li><a href="{{path('showCustomer',{ customerID:customer.id })}}">{{ customer.fullName }}</a></li>
+        {% endfor %}
     </ul>
+    <a href="{{path('customerManager')}}">Go Back</a>
 </div>
 {% endblock %}

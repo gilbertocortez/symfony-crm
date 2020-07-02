@@ -20,27 +20,26 @@
 	<div class="example-wrapper">
 		<h1>Customer Management</h1>
 		<p>Please complete the following form to create the customer account</p>
-		<form action="{{ path('addCustomer') }}" method="post">
+		<div class="form-group">
+			<form action="{{ path('addCustomer') }}" method="post">
+				<h4>Customer information:</h4>
+				<label for="customerFullName">Full Name</label>
+				<input type="text" name="customerFullName" id="customerFullName" class="form-control">
+				<br>
 
-			<label for="customerFullName">Customer Full Name</label>
-			<input type="text" name="customerFullName" id="customerFullName">
-			<br><br>
+				<label for="customerPhone">Phone</label>
+				<input type="tel" name="customerPhone" id="customerPhone" class="form-control">
+				<br>
 
-			<label for="customerPhone">Customer Phone</label>
-			<input type="tel" name="customerPhone" id="customerPhone">
-			<br><br>
+				<label for="customerEmail">Email</label>
+				<input type="email" name="customerEmail" id="customerEmail" class="form-control">
+				<br>
 
-			<label for="customerEmail">Customer Email</label>
-			<input type="email" name="customerEmail" id="customerEmail">
-			<br><br>
+				<input type="hidden" name="customerExternalId" value="">
 
-			<input type="hidden" name="customerExternalId" value="">
+				<input type="submit" value="Add Customer" class="btn btn-primary">
 
-			<input type="submit" value="Add Customer">
-
-		</form>
-		<ul>
-			<li><a href="{{path('showCustomer',{customerID:'1'})}}">View Customer</a></li>
-		</ul>
+			</form>
+		</div>
 	</div>
 {% endblock %}

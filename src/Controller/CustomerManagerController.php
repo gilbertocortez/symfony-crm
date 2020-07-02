@@ -6,17 +6,35 @@ use App\Entity\Customer;
 use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
 
 class CustomerManagerController extends AbstractController
 {
     /**
+     * @Route("/view-customers", name="viewCustomers")
+     */
+    public function viewCustomers()
+    {
+        $repository = $this->getDoctrine()
+                        ->getRepository(Customer::class);
+        $customers = $repository->findAll();
+
+        return $this->render('customer_manager/viewCustomers.html.twig', [
+            'controller_name' => 'CustomerManagerController',
+            'customers' => $customers,
+        ]);
+    }
+    /**
      * @Route("/customer/{customerID}", name="showCustomer")
      */
-    public function show($customerID)
+    public function showCustomer($customerID)
     {
         $customer = $this->getDoctrine()
             ->getRepository(Customer::class)
@@ -28,11 +46,11 @@ class CustomerManagerController extends AbstractController
             );
         }
 
-        return new Response('Check out this great customer ' . $customer->getFullName());
+        //return new Response('Check out this great customer ' . $customer->getFullName());
 
         // or render a template
         // in the template, print things with {{ product.name }}
-        // return $this->render('product/show.html.twig', ['product' => $product]);
+        return $this->render('customer_manager/viewCustomer.html.twig', ['customer' => $customer]);
     }
 
     /**
@@ -50,7 +68,10 @@ class CustomerManagerController extends AbstractController
         $customer->setFullName( $request->get('customerFullName') );
         $customer->setEMail( $request->get('customerPhone') );
         $customer->setPhone( $request->get('customerEmail') );
-        $customer->setEid( $request->get('customerExternalId') );
+
+        $ceid = $request->get('customerExternalId');
+        if ($ceid === "") $ceid = NULL;
+        $customer->setEid( $ceid );
         
         $objDateTime = new DateTime('NOW');
         $customer->setDateCreated($objDateTime);
@@ -62,7 +83,8 @@ class CustomerManagerController extends AbstractController
         // actually executes the queries (i.e. the INSERT query)
         $entityManager->flush();
 
-        return new Response('Saved new product with id ' . $customer->getId());
+        return new RedirectResponse($this->generateUrl('viewCustomers'));
+        //return new Response('Saved new product with id ' . $customer->getId());
 
     }
     /**
@@ -75,7 +97,7 @@ class CustomerManagerController extends AbstractController
         ]);
     }
     /**
-     * @Route("/customer-manager/{customerID}", name="customerManager")
+     * @Route("/customer-manager", name="customerManager")
      */
     public function index()
     {
