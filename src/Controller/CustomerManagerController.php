@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Customer;
+use App\Form\NewCustomerType;
+
 use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -58,33 +60,40 @@ class CustomerManagerController extends AbstractController
      */
     public function createCustomer(): Response
     {
+        // Get POST information sent
         $request = Request::createFromGlobals();
-
-        // you can fetch the EntityManager via $this->getDoctrine()
-        // or you can add an argument to the action: createCustomer(EntityManagerInterface $entityManager)
-        $entityManager = $this->getDoctrine()->getManager();
-
+        // Start a new customer object
         $customer = new Customer();
-        $customer->setFullName( $request->get('customerFullName') );
-        $customer->setEMail( $request->get('customerPhone') );
-        $customer->setPhone( $request->get('customerEmail') );
+        // Create a new form object and bound to customer class
+        $formNewCustomer = $this->createForm(NewCustomerType::class, $customer);
+        // Attach POST request data to customer class
+        $formNewCustomer->handleRequest($request);
 
-        $ceid = $request->get('customerExternalId');
-        if ($ceid === "") $ceid = NULL;
-        $customer->setEid( $ceid );
-        
-        $objDateTime = new DateTime('NOW');
-        $customer->setDateCreated($objDateTime);
-        $customer->setDateModified($objDateTime);
+        // Check that the form validates
+        if ($formNewCustomer->isSubmitted() && $formNewCustomer->isValid()) {
+            // $form->getData() holds the submitted values
+            // but, the original `$task` variable has also been updated
+            $newCustomer = $formNewCustomer->getData();
 
-        // tell Doctrine you want to (eventually) save the Product (no queries yet)
-        $entityManager->persist($customer);
+            // you can fetch the EntityManager via $this->getDoctrine()
+            // or you can add an argument to the action: createCustomer(EntityManagerInterface $entityManager)
+            $entityManager = $this->getDoctrine()->getManager();
 
-        // actually executes the queries (i.e. the INSERT query)
-        $entityManager->flush();
+            // Add current date time to new customer data
+            $objDateTime = new DateTime('NOW');
+            $customer->setDateCreated($objDateTime);
+            $customer->setDateModified($objDateTime);
 
-        return new RedirectResponse($this->generateUrl('viewCustomers'));
-        //return new Response('Saved new product with id ' . $customer->getId());
+            // tell Doctrine you want to (eventually) save the customer (no queries yet)
+            $entityManager->persist($customer);
+            
+            // actually executes the queries (i.e. the INSERT query)
+            $entityManager->flush();
+
+            return new RedirectResponse($this->generateUrl('viewCustomers'));
+            //return new Response('Saved new product with id ' . $customer->getId());
+        }
+
 
     }
     /**
@@ -92,8 +101,14 @@ class CustomerManagerController extends AbstractController
      */
     public function newCustomer()
     {
+        $customer = new Customer();
+        $formNewCustomer = $this->createForm(NewCustomerType::class, $customer, [
+            'action' => $this->generateUrl('addCustomer'),
+            'method' => 'POST',
+        ]);
+
         return $this->render('customer_manager/newCustomer.html.twig', [
-            'controller_name' => 'CustomerManagerController',
+            'form' => $formNewCustomer->createView(),
         ]);
     }
     /**

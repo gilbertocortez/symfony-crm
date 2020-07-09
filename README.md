@@ -1,8 +1,8 @@
 Symfony CRM
 
 Built by
-Gilberto Cortez
-    How it works:
+- Gilberto Cortez
+    - How it works:
         - Create a customer account
         - Create a lead
             - Track leads
@@ -13,4 +13,5 @@ Gilberto Cortez
                     - Awaiting Contract
                     - Sold
                 - Add notes
-                - Track phone call
+                - Track phone calls
+                - Send text message
