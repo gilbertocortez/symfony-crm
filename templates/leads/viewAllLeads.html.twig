@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Leads!
+{% endblock %}
+
+{% block body %}
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+	</style>
+
+	<div class="example-wrapper">
+		<h1>View Leads</h1>
+		<table class="table">
+			<thead>
+				<tr>
+					<td>ID</td>
+					<td>eID</td>
+					<td>Address</td>
+					<td>City</td>
+					<td>Zip Code</td>
+					<td>Division</td>
+					<td>Status</td>
+					<td>Amount</td>
+					<td>Salesperson</td>
+					<td>Source</td>
+					<td>Date Modified</td>
+					<td>Date Created</td>
+				</tr>
+			</thead>
+
+			{% for lead in leads %}
+				<tr>
+					<td>{{ lead.id }}</td>
+					<td>{{ lead.eid }}</td>
+					<td>{{ lead.address }}</td>
+					<td>{{ lead.city }}</td>
+					<td>{{ lead.zipCode }}</td>
+					<td>{{ lead.companyDivision }}</td>
+					<td>{{ lead.leadStatus }}</td>
+					<td>{{ lead.saleAmount }}</td>
+					<td>{{ lead.salesperson }}</td>
+					<td>{{ lead.leadSource }}</td>
+					<td>{{ lead.eid }}</td>
+					<td>{{ lead.eid }}</td>
+				</tr>
+			{% endfor %}
+		</table>
+		<a href="{{path('leadsManager')}}">Go Back</a>
+	</div>
+{% endblock %}
