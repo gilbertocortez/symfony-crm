@@ -21,15 +21,19 @@ class NewCustomerType extends AbstractType
         $builder
             ->add('eid', TextType::class, [
                 'required' => false,
+                'attr' => ['class' => 'form-control'],
             ])
             ->add('fullName', TextType::class, [
                 'required' => true,
+                'attr' => ['class' => 'form-control'],
             ])
             ->add('eMail', EmailType::class, [
                 'required' => true,
+                'attr' => ['class' => 'form-control'],
             ])
             ->add('phone', TelType::class, [
                 'required' => true,
+                'attr' => ['class' => 'form-control'],
             ])
             ->add('date_created', HiddenType::class, [
                 'required' => false,
@@ -37,7 +41,9 @@ class NewCustomerType extends AbstractType
             ->add('date_modified', HiddenType::class, [
                 'required' => false,
             ])
-            ->add('submit', SubmitType::class)
+            ->add('submit', SubmitType::class, [
+                'attr' => ['class' => 'btn btn-primary'],
+            ])
         ;
     }
 

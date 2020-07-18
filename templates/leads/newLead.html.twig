@@ -4,42 +4,90 @@
 {% endblock %}
 
 {% block body %}
-	<style>
-		.example-wrapper {
-			margin: 1em auto;
-			max-width: 800px;
-			width: 95%;
-			font: 18px / 1.5 sans-serif;
-		}
-		.example-wrapper code {
-			background: #F5F5F5;
-			padding: 2px 6px;
-		}
-	</style>
-
 	<div class="example-wrapper">
-		<h1>Customer Management</h1>
-		<p>Please complete the following form to create the customer account</p>
-		<div class="form-group">
-			{{ form_start(form) }}
-			<div class="my-custom-class-for-errors">
-				{{ form_errors(form) }}
-			</div>
-			<div class="row">
-				<div class="col">
-					{{ form_row(form.address) }}
-				</div>
-				
-			</div>
-			<div class="row">
-				<div class="col">
-					{{ form_row(form.city) }}
-				</div>
-				<div class="col" id="some-custom-id">
-					{{ form_row(form.zipCode) }}
-				</div>
-			</div>
-			{{ form_end(form) }}
+		<h1>Leads Management</h1>
+		<p>Please complete the following form to create a new lead</p>
+
+		{{ form_start(form) }}
+		<div class="my-custom-class-for-errors">
+			{{ form_errors(form) }}
 		</div>
+		<div class="form-group">
+			{{ form_label(form.address) }}
+			{{ form_widget(form.address, {'attr': {'class': 'form-control'}}) }}
+			<small>{{ form_help(form.address) }}</small>
+			<div class="form-error">
+				{{ form_errors(form.address) }}
+			</div>
+		</div>
+		<div class="form-group">
+			{{ form_label(form.city) }}
+			{{ form_widget(form.city, {'attr': {'class': 'form-control'}}) }}
+			<small>{{ form_help(form.city) }}</small>
+			<div class="form-error">
+				{{ form_errors(form.city) }}
+			</div>
+		</div>
+		<div class="form-group">
+			{{ form_label(form.zipCode) }}
+			{{ form_widget(form.zipCode, {'attr': {'class': 'form-control'}}) }}
+			<small>{{ form_help(form.zipCode) }}</small>
+			<div class="form-error">
+				{{ form_errors(form.zipCode) }}
+			</div>
+		</div>
+		<div class="form-group">
+			{{ form_label(form.eID, null, {'label': 'Customer ID on DB',
+											'label_attr': {'class': 'form-label'}
+										}) }}
+			{{ form_widget(form.eID, {'attr': {'class': 'form-control'}}) }}
+			<small>{{ form_help(form.eID) }}</small>
+			<div class="form-error">
+				{{ form_errors(form.eID) }}
+			</div>
+		</div>
+		<div class="form-group">
+			{{ form_label(form.companyDivision) }}
+			{{ form_widget(form.companyDivision, {'attr': {'class': 'form-control'}}) }}
+			<small>{{ form_help(form.companyDivision) }}</small>
+			<div class="form-error">
+				{{ form_errors(form.companyDivision) }}
+			</div>
+		</div>
+		<div class="form-group">
+			{{ form_label(form.leadStatus) }}
+			{{ form_widget(form.leadStatus, {'attr': {'class': 'form-control'}}) }}
+			<small>{{ form_help(form.leadStatus) }}</small>
+			<div class="form-error">
+				{{ form_errors(form.leadStatus) }}
+			</div>
+		</div>
+		<div class="form-group">
+			{{ form_label(form.saleAmount) }}
+			{{ form_widget(form.saleAmount, {'attr': {'class': 'form-control'}}) }}
+			<small>{{ form_help(form.saleAmount) }}</small>
+			<div class="form-error">
+				{{ form_errors(form.saleAmount) }}
+			</div>
+		</div>
+		<div class="form-group">
+			{{ form_label(form.salesperson) }}
+			{{ form_widget(form.salesperson, {'attr': {'class': 'form-control'}}) }}
+			<small>{{ form_help(form.salesperson) }}</small>
+			<div class="form-error">
+				{{ form_errors(form.salesperson) }}
+			</div>
+		</div>
+		<div class="form-group">
+			{{ form_label(form.leadSource) }}
+			{{ form_widget(form.leadSource, {'attr': {'class': 'form-control'}}) }}
+			<small>{{ form_help(form.leadSource) }}</small>
+			<div class="form-error">
+				{{ form_errors(form.leadSource) }}
+			</div>
+		</div>
+		{{ form_row(form.submit, { 'label': 'Create new lead' }) }}
+		{{ form_end(form) }}
+
 	</div>
 {% endblock %}

@@ -51,7 +51,9 @@ class NewLeadsType extends AbstractType
             ->add('dateCreated', HiddenType::class, [
                 'required' => false,
             ])
-            ->add('submit', SubmitType::class)
+            ->add('submit', SubmitType::class, [
+                'attr' => ['class' => 'btn btn-primary'],
+            ])
         ;
     }
 

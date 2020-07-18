@@ -1,18 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Leads Manager{% endblock %}
+{% block title %}Leads Manager
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Lead Management</h1>
-    <ul>
-        <li><a href="{{ path('newLead') }}">Create Lead</a></li>
-        <li><a href="{{ path('viewAllLeads') }}">View Leads</a></li>
-    </ul>
-</div>
+	<div class="example-wrapper">
+		<h1>Lead Management</h1>
+		<ul>
+			<li><a href="{{path('newLead')}}">Create Lead</a></li>
+			<li><a href="{{path('viewAllLeads')}}">View Leads</a></li>
+		</ul>
+	</div>
 {% endblock %}

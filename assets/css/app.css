@@ -3,6 +3,7 @@
 body {
     background-color: lightgray;
 }
+
 .sidebar {
     position: fixed;
     top: 0;
@@ -12,6 +13,7 @@ body {
     padding: 0;
     box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
 }
+
 .sidebar-sticky {
     position: -webkit-sticky;
     position: sticky;
@@ -21,6 +23,19 @@ body {
     overflow-x: hidden;
     overflow-y: auto;
 }
-.ml-sm-auto, .mx-sm-auto {
-    margin-left: auto!important;
+
+.ml-sm-auto,
+.mx-sm-auto {
+    margin-left: auto !important;
 }
+
+.example-wrapper {
+    margin: 1em 0 1em 20vw;
+    width: 80vw;
+    font: 18px / 1.5 sans-serif;
+}
+
+.example-wrapper code {
+    background: #F5F5F5;
+    padding: 2px 6px;
+} 
