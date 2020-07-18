@@ -14,7 +14,7 @@
 						<a href="{{path('showCustomer',{ customerID:customer.id })}}">{{ customer.fullName }}</a>
 					</div>
 					<div class="col">
-						<a href="{{path('newLead') }}">New Lead</a>
+						<a href="{{path('newLead',{ customerID:customer.id }) }}">New Lead</a>
 					</div>
 					<div class="col">
 						<a href="#">Delete</a>

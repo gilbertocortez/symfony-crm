@@ -9,26 +9,26 @@
 		<a href="{{path('leadsManager')}}">Go Back</a>
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col col-sm-1">ID</div>
-				<div class="col col-sm-1">eID</div>
-				<div class="coll col-lg-3">Address</div>
-				<div class="col col-md-2">City</div>
-				<div class="col col-md-2">Zip Code</div>
-				<div class="col col-sm-1">Division</div>
-				<div class="col col-sm-1">Status</div>
-				<div class="col col-md-2">Amount</div>
-				<div class="col col-sm-1">Salesperson</div>
-				<div class="col col-md-2">Source</div>
-				<div class="col col-md-2">Date Modified</div>
-				<div class="col col-md-2">Date Created</div>
+				<div class="col">ID</div>
+				<div class="col">eID</div>
+				<div class="coll col-lg-2">Address</div>
+				<div class="col">City</div>
+				<div class="col">Zip Code</div>
+				<div class="col">Division</div>
+				<div class="col">Status</div>
+				<div class="col">Amount</div>
+				<div class="col">Salesperson</div>
+				<div class="col">Source</div>
+				<div class="col">Date Modified</div>
+				<div class="col">Date Created</div>
 			</div>
 
 
 			{% for lead in leads %}
 				<div class="row">
-					<div class="col col-sm-">{{ lead.id }}</div>
-					<div class="col col-sm-1">{{ lead.eid }}</div>
-					<div class="coll col-lg-3">{{ lead.address }}</div>
+					<div class="col">{{ lead.id }}</div>
+					<div class="col">{{ lead.eid }}</div>
+					<div class="col col-lg-2">{{ lead.address }}</div>
 					<div class="col">{{ lead.city }}</div>
 					<div class="col">{{ lead.zipCode }}</div>
 					<div class="col">{{ lead.companyDivision }}</div>
@@ -36,8 +36,8 @@
 					<div class="col">{{ lead.saleAmount }}</div>
 					<div class="col">{{ lead.salesperson }}</div>
 					<div class="col">{{ lead.leadSource }}</div>
-					<div class="col">{{ lead.eid }}</div>
-					<div class="col">{{ lead.eid }}</div>
+					<div class="col">{{ lead.dateModified|date("H:i:s d-m-Y") }}</div>
+					<div class="col">{{ lead.dateCreated|date("H:i:s d-m-Y") }}</div>
 				</div>
 			{% endfor %}
 		</div>

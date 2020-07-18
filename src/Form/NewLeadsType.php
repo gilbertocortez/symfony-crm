@@ -20,6 +20,7 @@ class NewLeadsType extends AbstractType
         $builder
             ->add('eID', IntegerType::class, [
                 'required' => false,
+                'disabled' => false,
             ])
             ->add('address', TextType::class, [
                 'required' => true,
@@ -42,7 +43,7 @@ class NewLeadsType extends AbstractType
             ->add('salesperson', IntegerType::class, [
                 'required' => true,
             ])
-            ->add('leadSource', IntegerType::class, [
+            ->add('leadSource', TextType::class, [
                 'required' => false,
             ])
             ->add('dateModified', HiddenType::class, [

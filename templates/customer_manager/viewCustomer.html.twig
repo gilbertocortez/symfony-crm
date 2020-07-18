@@ -1,26 +1,26 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CustomerManagerController!
+{% block title %}
+	View customer information
 {% endblock %}
 
 {% block body %}
-	<style>
-		<div class="example-wrapper">
-			<h1>Customer Information</h1>
-			<p>
-				Name:
-				{{ customer.fullName }}
-				<br>
-				Email:
-				{{ customer.email }}
-				<br/>
-				Phone:
-				{{ customer.phone }}
-				<br/>
-				External ID:
-				{{ customer.eid }}
-				<br/>
-				<a href="{{path('viewCustomers')}}">Go Back</a>
-			</p>
-		</div>
-	{% endblock %}
+	<div class="example-wrapper">
+		<h1>Customer Information</h1>
+		<p>
+			Name:
+			{{ customer.fullName }}
+			<br>
+			Email:
+			{{ customer.email }}
+			<br/>
+			Phone:
+			{{ customer.phone }}
+			<br/>
+			External ID:
+			{{ customer.eid }}
+			<br/>
+			<a href="{{path('viewCustomers')}}">Go Back</a>
+		</p>
+	</div>
+{% endblock %}

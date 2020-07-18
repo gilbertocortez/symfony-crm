@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\Leads;
 use App\Form\NewLeadsType;
 
+use App\Entity\Customer;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -77,11 +79,11 @@ class LeadsController extends AbstractController
         }
     }
     /**
-     * @Route("/leads/new", name="newLead")
+     * @Route("/leads/new/{customerID}", name="newLead")
      * 
      * This view creates a form that the user completed to create a new lead
      */
-    public function newLead()
+    public function newLead($customerID)
     {
         // Start a new Leads object
         $lead = new Leads();
@@ -91,10 +93,23 @@ class LeadsController extends AbstractController
             'action' => $this->generateUrl('addLead'),
             'method' => 'POST',
         ]);
+        // Start a new connection to the database, get the Customer repository, and search the customer that corresponds with the customer id provided
+        $customer = $this->getDoctrine()
+            ->getRepository(Customer::class)
+            ->find($customerID);
+
+        // Check to see if there is a customer, if not throw an error
+        if (!$customer) {
+            throw $this->createNotFoundException(
+                'No product found for id ' . $customerID
+            );
+        }
 
         // Render view from TWIG template using the generated form
         return $this->render('leads/newLead.html.twig', [
             'form' => $formNewLead->createView(),
+            'customerID' => $customerID,
+            'customer' => $customer,
         ]);
     }
     /**

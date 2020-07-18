@@ -40,12 +40,17 @@
 			{{ form_label(form.eID, null, {'label': 'Customer ID on DB',
 											'label_attr': {'class': 'form-label'}
 										}) }}
-			{{ form_widget(form.eID, {'attr': {'class': 'form-control'}}) }}
+			{{ form_widget(form.eID, {'attr': { 'class': 'form-control', 'value': customerID }}) }}
 			<small>{{ form_help(form.eID) }}</small>
 			<div class="form-error">
 				{{ form_errors(form.eID) }}
 			</div>
 		</div>
+		<p class="customerData">
+			Name: {{ customer.fullName }} | Email: {{ customer.email }} | Phone: {{ customer.phone }} | eID: {{ customer.eid }}
+		</p>
+
+
 		<div class="form-group">
 			{{ form_label(form.companyDivision) }}
 			{{ form_widget(form.companyDivision, {'attr': {'class': 'form-control'}}) }}
