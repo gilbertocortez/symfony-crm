@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Leads Manager
+{% endblock %}
+
+{% block body %}
+	<div class="example-wrapper">
+		<h1>Leads Management</h1>
+        <h2>Messages</h2>
+		<p>Please complete the following form to create a new message on the selected lead</p>
+
+		{{ form_start(form) }}
+		
+		{{ form_end(form) }}
+
+	</div>
+{% endblock %}

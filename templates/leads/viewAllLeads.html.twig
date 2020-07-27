@@ -21,6 +21,7 @@
 				<div class="col">Source</div>
 				<div class="col">Date Modified</div>
 				<div class="col">Date Created</div>
+				<div class="col">Messages</div>
 			</div>
 
 
@@ -38,6 +39,7 @@
 					<div class="col">{{ lead.leadSource }}</div>
 					<div class="col">{{ lead.dateModified|date("H:i:s d-m-Y") }}</div>
 					<div class="col">{{ lead.dateCreated|date("H:i:s d-m-Y") }}</div>
+					<div class="col"><a href="{{path('messages')}}">Messages</a></div>
 				</div>
 			{% endfor %}
 		</div>
